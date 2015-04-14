@@ -2,9 +2,10 @@
 // $Id$
 //
 //
-// Original author: Andrew Dowsey <andrew.dowsey <a.t> manchester.ac.uk>
+// Original author: Andrew Dowsey <andrew.dowsey <a.t> liverpool.ac.uk>
 //
-// Copyright (C) 2013  CADET Laboratory for Medical Bioinformatics, University of Manchester, UK
+// Copyright (C) 2015 biospi Laboratory, EEE, University of Liverpool, UK
+// Copyright (C) 2013 CADET Bioinformatics Laboratory, University of Manchester, UK
 //
 // This file is part of seaMass.
 //
@@ -23,6 +24,7 @@
 //
 
 #include "SMVWriter.hpp"
+#include "NetCDF4StorageManager.hpp"
 
 #include <boost/filesystem.hpp>
 #include <SpatialIndex.h>
@@ -30,6 +32,7 @@
 
 using namespace SpatialIndex;
 using namespace boost;
+
 
 class MyDataStream : public IDataStream
 {
@@ -163,7 +166,7 @@ write_cs(const string& basename, vector<Basis*>& bases, ii n_core_bases, vector<
 	boost::filesystem::path viz_path(directory);
 	viz_path /= basename;
 	string vp = viz_path.string();
-	SpatialIndex::IStorageManager* diskfile = StorageManager::createNewDiskStorageManager(vp, 4096);
+	SpatialIndex::IStorageManager* diskfile = StorageManager::createNewNetCDF4StorageManager(vp, 4096);
 
 	SpatialIndex::StorageManager::IBuffer* file = StorageManager::createNewRandomEvictionsBuffer(*diskfile, 10, false);
 	// applies a main memory random buffer on top of the persistent storage manager

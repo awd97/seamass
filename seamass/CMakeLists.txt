@@ -7,6 +7,7 @@ if(NOT HDF5_FOUND)
  find_package(HDF5 1.8.5 REQUIRED)
 endif()
 
+find_package(netCDF REQUIRED)
 find_package(MKL REQUIRED)
 find_package(SpatialIndex 1.8.5 REQUIRED)
 find_package(Boost 1.54 REQUIRED COMPONENTS
@@ -16,12 +17,14 @@ find_package(Boost 1.54 REQUIRED COMPONENTS
 add_library(seamass
   seamass.hpp
   OptimiserASRL.hpp
+  NetCDF4StorageManager.hpp
   SMOWriter.hpp
   SMVWriter.hpp   
   BasisFunctions.hpp
   core.hpp
   seamass.cpp
   OptimiserASRL.cpp
+  NetCDF4StorageManager.cpp
   SMOWriter.cpp   
   SMVWriter.cpp
   BasisFunctions.cpp
@@ -29,12 +32,14 @@ add_library(seamass
 )
 target_include_directories(seamass PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}
+  ${netCDF_INCLUDE_DIR}
   ${MKL_INCLUDE_DIR}
   ${HDF5_INCLUDE_DIR}
   ${Boost_INCLUDE_DIRS}
   ${SPATIALINDEX_INCLUDE_DIR}
 )
 target_link_libraries(seamass
+  ${netCDF_LIBRARIES}
   ${MKL_LIBRARIES}
   ${HDF5_LIBRARIES}
   ${Boost_LIBRARIES}

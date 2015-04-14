@@ -2,9 +2,10 @@
 // $Id$
 //
 //
-// Original author: Andrew Dowsey <andrew.dowsey <a.t> manchester.ac.uk>
+// Original author: Andrew Dowsey <andrew.dowsey <a.t> liverpool.ac.uk>
 //
-// Copyright (C) 2013  CADET Laboratory for Medical Bioinformatics, University of Manchester, UK
+// Copyright (C) 2015 biospi Laboratory, EEE, University of Liverpool, UK
+// Copyright (C) 2013 CADET Bioinformatics Laboratory, University of Manchester, UK
 //
 // This file is part of seaMass.
 //
